@@ -3,6 +3,7 @@ package stepdef;
 import baseUtils.Base;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.Resourcepage;
 
 import java.util.ArrayList;
@@ -17,15 +18,15 @@ public class Tc_SearchFilter extends Base {
         this.base = base;
     }
 
-    @And("Enter the value for to check the search function {string}")
+    @When("Enter the value for to check the search function {string}")
     public void enterTheValueForToCheckTheSearchFunction(String value) {
         rp = new Resourcepage(base.driver);
         rp.enterResourceSearch(value);
     }
 
     @Then("Verify that the same resource is showing {string}.")
-    public void verifyThatTheSameResourceIsShowing(String acutalResourceName) {
-        rp.validateSearch(acutalResourceName);
+    public void verifyThatTheSameResourceIsShowing(String expectedResourceName) {
+        rp.validateSearch(expectedResourceName);
     }
 
     @And("Click on target audience and Check the filter is working or not")
@@ -38,9 +39,7 @@ public class Tc_SearchFilter extends Base {
         List<String> l = new ArrayList<String>();
         l.add(patient);
         l.add(healthCare);
-        for (String i : l) {
+        for (String i : l)
             rp.selectTarget(i);
-        }
-
     }
 }

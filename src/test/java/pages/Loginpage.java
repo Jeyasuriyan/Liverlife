@@ -24,10 +24,10 @@ public class Loginpage {
 
     public void loginValidate() {
         driver.findElement(By.xpath("//header/div[2]/div[1]/div[1]/ul[1]/li[2]/a[1]")).click();
-        if (driver.getCurrentUrl().equals("https://liverlifeweb.myliverlife.online/resources")) {
+        if (driver.getCurrentUrl().equals("https://liverlifeweb.myliverlife.online/resources"))
             System.out.print("Logged in Success");
-        } else {
+        else
             System.out.println("Empty field or Credentials are wrong");
-        }
+
     }
 }
