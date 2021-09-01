@@ -69,4 +69,47 @@ public class Resourcepage {
         return urlGetter;
     }
 
+    public void enterResourceSearch(String value) {
+        driver.findElement(By.id("intermidiate_search_val")).sendKeys(value);
+        driver.findElement(By.id("searchbar_click")).click();
+    }
+
+    public void validateSearch(String actualResourceName) {
+        String resourceName = driver.findElement(By.xpath("//h3[contains(text(),'Level Check–PBC Predictive Biomarkers')]")).getText();
+        if (resourceName.equals(actualResourceName)) {
+            System.out.println("Search is working properly");
+        } else {
+            System.out.println("Search is not working properly");
+        }
+    }
+
+    public void clickTargetAudience() {
+        driver.findElement(By.xpath("//body/div[3]/div[3]/div[1]/div[1]/div[1]/span[1]")).click();
+    }
+
+    public void selectTarget(String targetAudience) {
+        if (targetAudience.equals("Patient")) {
+            driver.findElement(By.xpath("//label[contains(text(),'Patient')]")).click();
+            driver.findElement(By.id("filter")).click();
+            String resultValue = driver.findElement(By.xpath("//p[contains(text(),'Your Results 4')]")).getText();
+            clickTargetAudience();
+            driver.findElement(By.xpath("//label[contains(text(),'Patient')]")).click();
+            if (resultValue.equals("Your Results 4")) {
+                System.out.println("Patient filter is working properly");
+            } else {
+                System.out.println("Patient filter is not working properly");
+            }
+        } else if (targetAudience.equals("Health Care Provider")) {
+            driver.findElement(By.xpath("//label[contains(text(),'Health Care Provider')]")).click();
+            driver.findElement(By.id("filter")).click();
+            String resultValue = driver.findElement(By.xpath("//p[contains(text(),'Your Results 2')]")).getText();
+            if (resultValue.equals("Your Results 2")) {
+                System.out.println("Health Care Provider filter is working properly");
+            } else {
+                System.out.println("Health Care Provider filter is not working properly");
+            }
+        }
+
+    }
+
 }

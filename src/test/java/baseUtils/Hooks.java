@@ -32,6 +32,6 @@ public class Hooks extends Base {
 
     @After
     public void tearDown(Scenario scenario) {
-        base.driver.close();
+        //base.driver.close();
     }
 }
